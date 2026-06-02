@@ -1,0 +1,1 @@
+RULE "VIP" IF customer.aboba > 18 THEN percent 1287 PRIORITY 34242
