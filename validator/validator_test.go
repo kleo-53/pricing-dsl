@@ -8,7 +8,7 @@ import (
 const validProgram = `
 RULE "adult-percent" IF customer.age >= 18 THEN percent 10 PRIORITY 10 GROUP coupon
 RULE "segment-fixed" IF customer.segment == "vip" AND order.total > 1000 THEN fixed 250
-RULE "fallback" IF true THEN final 0 GROUP cert
+RULE "fallback" IF true THEN final 0 GROUP cert DISABLED
 `
 
 func TestValidateStringAcceptsValidProgram(t *testing.T) {

@@ -6,50 +6,18 @@ rule
     : RULE STRING IF expression THEN modifier
       (PRIORITY NUMBER)?
       (GROUP groupType)?
+      (STATUS)?
     ;
 
-modifier
-    : modifierType NUMBER
-    ;
+modifier : modifierType NUMBER;
+modifierType : PERCENT | FIXED | FINAL;
+groupType : COUPON | PROMOCODE | CERT;
 
-modifierType
-    : PERCENT
-    | FIXED
-    | FINAL
-    ;
-
-groupType
-    : COUPON
-    | PROMOCODE
-    | CERT
-    ;
-
-expression
-    : comparison ((AND | OR) comparison)*
-    | TRUE
-    ;
-
-comparison
-    : identifier comparator value
-    ;
-
-comparator
-    : EQ
-    | NE
-    | GE
-    | GT
-    | LE
-    | LT
-    ;
-
-identifier
-    : ID ('.' ID)*
-    ;
-
-value
-    : STRING
-    | NUMBER
-    ;
+expression : comparison ((AND | OR) comparison)* | TRUE;
+comparison : identifier comparator value;
+comparator : EQ | NE | GE | GT | LE | LT;
+identifier : ID ('.' ID)*;
+value : STRING | NUMBER;
 
 // Keywords
 RULE      : 'RULE';
@@ -57,6 +25,7 @@ IF        : 'IF';
 THEN      : 'THEN';
 PRIORITY  : 'PRIORITY';
 GROUP     : 'GROUP';
+STATUS  : 'DISABLED' | 'ENABLED';
 
 PERCENT   : 'percent';
 FIXED     : 'fixed';
@@ -83,11 +52,5 @@ ID        : [a-zA-Z] [a-zA-Z0-9_]*;
 NUMBER    : [0-9]+ ('.' [0-9]+)?;
 STRING    : '"' (ESCAPE | ~["\\])* '"';
 
-fragment ESCAPE
-    : '\\' ('"' | '\\')
-    ;
-
-WS
-    : [ \t\r\n]+ -> skip
-    ;
-
+fragment ESCAPE : '\\' ('"' | '\\');
+WS : [ \t\r\n]+ -> skip;

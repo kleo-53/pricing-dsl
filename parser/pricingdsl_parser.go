@@ -32,14 +32,14 @@ var PricingDSLParserStaticData struct {
 func pricingdslParserInit() {
 	staticData := &PricingDSLParserStaticData
 	staticData.LiteralNames = []string{
-		"", "'.'", "'RULE'", "'IF'", "'THEN'", "'PRIORITY'", "'GROUP'", "'percent'",
-		"'fixed'", "'final'", "'coupon'", "'promocode'", "'cert'", "'AND'",
-		"'OR'", "'true'", "'=='", "'!='", "'>='", "'>'", "'<='", "'<'",
+		"", "'.'", "'RULE'", "'IF'", "'THEN'", "'PRIORITY'", "'GROUP'", "",
+		"'percent'", "'fixed'", "'final'", "'coupon'", "'promocode'", "'cert'",
+		"'AND'", "'OR'", "'true'", "'=='", "'!='", "'>='", "'>'", "'<='", "'<'",
 	}
 	staticData.SymbolicNames = []string{
-		"", "", "RULE", "IF", "THEN", "PRIORITY", "GROUP", "PERCENT", "FIXED",
-		"FINAL", "COUPON", "PROMOCODE", "CERT", "AND", "OR", "TRUE", "EQ", "NE",
-		"GE", "GT", "LE", "LT", "ID", "NUMBER", "STRING", "WS",
+		"", "", "RULE", "IF", "THEN", "PRIORITY", "GROUP", "STATUS", "PERCENT",
+		"FIXED", "FINAL", "COUPON", "PROMOCODE", "CERT", "AND", "OR", "TRUE",
+		"EQ", "NE", "GE", "GT", "LE", "LT", "ID", "NUMBER", "STRING", "WS",
 	}
 	staticData.RuleNames = []string{
 		"start", "rule", "modifier", "modifierType", "groupType", "expression",
@@ -47,35 +47,37 @@ func pricingdslParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 25, 76, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 26, 79, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 1, 0, 4,
 		0, 22, 8, 0, 11, 0, 12, 0, 23, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		1, 1, 1, 1, 1, 1, 3, 1, 36, 8, 1, 1, 1, 1, 1, 3, 1, 40, 8, 1, 1, 2, 1,
-		2, 1, 2, 1, 3, 1, 3, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 5, 5, 52, 8, 5, 10,
-		5, 12, 5, 55, 9, 5, 1, 5, 3, 5, 58, 8, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7,
-		1, 7, 1, 8, 1, 8, 1, 8, 5, 8, 69, 8, 8, 10, 8, 12, 8, 72, 9, 8, 1, 9, 1,
-		9, 1, 9, 0, 0, 10, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 0, 5, 1, 0, 7, 9,
-		1, 0, 10, 12, 1, 0, 13, 14, 1, 0, 16, 21, 1, 0, 23, 24, 71, 0, 21, 1, 0,
-		0, 0, 2, 27, 1, 0, 0, 0, 4, 41, 1, 0, 0, 0, 6, 44, 1, 0, 0, 0, 8, 46, 1,
-		0, 0, 0, 10, 57, 1, 0, 0, 0, 12, 59, 1, 0, 0, 0, 14, 63, 1, 0, 0, 0, 16,
-		65, 1, 0, 0, 0, 18, 73, 1, 0, 0, 0, 20, 22, 3, 2, 1, 0, 21, 20, 1, 0, 0,
-		0, 22, 23, 1, 0, 0, 0, 23, 21, 1, 0, 0, 0, 23, 24, 1, 0, 0, 0, 24, 25,
-		1, 0, 0, 0, 25, 26, 5, 0, 0, 1, 26, 1, 1, 0, 0, 0, 27, 28, 5, 2, 0, 0,
-		28, 29, 5, 24, 0, 0, 29, 30, 5, 3, 0, 0, 30, 31, 3, 10, 5, 0, 31, 32, 5,
-		4, 0, 0, 32, 35, 3, 4, 2, 0, 33, 34, 5, 5, 0, 0, 34, 36, 5, 23, 0, 0, 35,
-		33, 1, 0, 0, 0, 35, 36, 1, 0, 0, 0, 36, 39, 1, 0, 0, 0, 37, 38, 5, 6, 0,
-		0, 38, 40, 3, 8, 4, 0, 39, 37, 1, 0, 0, 0, 39, 40, 1, 0, 0, 0, 40, 3, 1,
-		0, 0, 0, 41, 42, 3, 6, 3, 0, 42, 43, 5, 23, 0, 0, 43, 5, 1, 0, 0, 0, 44,
-		45, 7, 0, 0, 0, 45, 7, 1, 0, 0, 0, 46, 47, 7, 1, 0, 0, 47, 9, 1, 0, 0,
-		0, 48, 53, 3, 12, 6, 0, 49, 50, 7, 2, 0, 0, 50, 52, 3, 12, 6, 0, 51, 49,
-		1, 0, 0, 0, 52, 55, 1, 0, 0, 0, 53, 51, 1, 0, 0, 0, 53, 54, 1, 0, 0, 0,
-		54, 58, 1, 0, 0, 0, 55, 53, 1, 0, 0, 0, 56, 58, 5, 15, 0, 0, 57, 48, 1,
-		0, 0, 0, 57, 56, 1, 0, 0, 0, 58, 11, 1, 0, 0, 0, 59, 60, 3, 16, 8, 0, 60,
-		61, 3, 14, 7, 0, 61, 62, 3, 18, 9, 0, 62, 13, 1, 0, 0, 0, 63, 64, 7, 3,
-		0, 0, 64, 15, 1, 0, 0, 0, 65, 70, 5, 22, 0, 0, 66, 67, 5, 1, 0, 0, 67,
-		69, 5, 22, 0, 0, 68, 66, 1, 0, 0, 0, 69, 72, 1, 0, 0, 0, 70, 68, 1, 0,
-		0, 0, 70, 71, 1, 0, 0, 0, 71, 17, 1, 0, 0, 0, 72, 70, 1, 0, 0, 0, 73, 74,
-		7, 4, 0, 0, 74, 19, 1, 0, 0, 0, 6, 23, 35, 39, 53, 57, 70,
+		1, 1, 1, 1, 1, 1, 3, 1, 36, 8, 1, 1, 1, 1, 1, 3, 1, 40, 8, 1, 1, 1, 3,
+		1, 43, 8, 1, 1, 2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5,
+		5, 5, 55, 8, 5, 10, 5, 12, 5, 58, 9, 5, 1, 5, 3, 5, 61, 8, 5, 1, 6, 1,
+		6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 5, 8, 72, 8, 8, 10, 8, 12,
+		8, 75, 9, 8, 1, 9, 1, 9, 1, 9, 0, 0, 10, 0, 2, 4, 6, 8, 10, 12, 14, 16,
+		18, 0, 5, 1, 0, 8, 10, 1, 0, 11, 13, 1, 0, 14, 15, 1, 0, 17, 22, 1, 0,
+		24, 25, 75, 0, 21, 1, 0, 0, 0, 2, 27, 1, 0, 0, 0, 4, 44, 1, 0, 0, 0, 6,
+		47, 1, 0, 0, 0, 8, 49, 1, 0, 0, 0, 10, 60, 1, 0, 0, 0, 12, 62, 1, 0, 0,
+		0, 14, 66, 1, 0, 0, 0, 16, 68, 1, 0, 0, 0, 18, 76, 1, 0, 0, 0, 20, 22,
+		3, 2, 1, 0, 21, 20, 1, 0, 0, 0, 22, 23, 1, 0, 0, 0, 23, 21, 1, 0, 0, 0,
+		23, 24, 1, 0, 0, 0, 24, 25, 1, 0, 0, 0, 25, 26, 5, 0, 0, 1, 26, 1, 1, 0,
+		0, 0, 27, 28, 5, 2, 0, 0, 28, 29, 5, 25, 0, 0, 29, 30, 5, 3, 0, 0, 30,
+		31, 3, 10, 5, 0, 31, 32, 5, 4, 0, 0, 32, 35, 3, 4, 2, 0, 33, 34, 5, 5,
+		0, 0, 34, 36, 5, 24, 0, 0, 35, 33, 1, 0, 0, 0, 35, 36, 1, 0, 0, 0, 36,
+		39, 1, 0, 0, 0, 37, 38, 5, 6, 0, 0, 38, 40, 3, 8, 4, 0, 39, 37, 1, 0, 0,
+		0, 39, 40, 1, 0, 0, 0, 40, 42, 1, 0, 0, 0, 41, 43, 5, 7, 0, 0, 42, 41,
+		1, 0, 0, 0, 42, 43, 1, 0, 0, 0, 43, 3, 1, 0, 0, 0, 44, 45, 3, 6, 3, 0,
+		45, 46, 5, 24, 0, 0, 46, 5, 1, 0, 0, 0, 47, 48, 7, 0, 0, 0, 48, 7, 1, 0,
+		0, 0, 49, 50, 7, 1, 0, 0, 50, 9, 1, 0, 0, 0, 51, 56, 3, 12, 6, 0, 52, 53,
+		7, 2, 0, 0, 53, 55, 3, 12, 6, 0, 54, 52, 1, 0, 0, 0, 55, 58, 1, 0, 0, 0,
+		56, 54, 1, 0, 0, 0, 56, 57, 1, 0, 0, 0, 57, 61, 1, 0, 0, 0, 58, 56, 1,
+		0, 0, 0, 59, 61, 5, 16, 0, 0, 60, 51, 1, 0, 0, 0, 60, 59, 1, 0, 0, 0, 61,
+		11, 1, 0, 0, 0, 62, 63, 3, 16, 8, 0, 63, 64, 3, 14, 7, 0, 64, 65, 3, 18,
+		9, 0, 65, 13, 1, 0, 0, 0, 66, 67, 7, 3, 0, 0, 67, 15, 1, 0, 0, 0, 68, 73,
+		5, 23, 0, 0, 69, 70, 5, 1, 0, 0, 70, 72, 5, 23, 0, 0, 71, 69, 1, 0, 0,
+		0, 72, 75, 1, 0, 0, 0, 73, 71, 1, 0, 0, 0, 73, 74, 1, 0, 0, 0, 74, 17,
+		1, 0, 0, 0, 75, 73, 1, 0, 0, 0, 76, 77, 7, 4, 0, 0, 77, 19, 1, 0, 0, 0,
+		7, 23, 35, 39, 42, 56, 60, 73,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -120,25 +122,26 @@ const (
 	PricingDSLParserTHEN      = 4
 	PricingDSLParserPRIORITY  = 5
 	PricingDSLParserGROUP     = 6
-	PricingDSLParserPERCENT   = 7
-	PricingDSLParserFIXED     = 8
-	PricingDSLParserFINAL     = 9
-	PricingDSLParserCOUPON    = 10
-	PricingDSLParserPROMOCODE = 11
-	PricingDSLParserCERT      = 12
-	PricingDSLParserAND       = 13
-	PricingDSLParserOR        = 14
-	PricingDSLParserTRUE      = 15
-	PricingDSLParserEQ        = 16
-	PricingDSLParserNE        = 17
-	PricingDSLParserGE        = 18
-	PricingDSLParserGT        = 19
-	PricingDSLParserLE        = 20
-	PricingDSLParserLT        = 21
-	PricingDSLParserID        = 22
-	PricingDSLParserNUMBER    = 23
-	PricingDSLParserSTRING    = 24
-	PricingDSLParserWS        = 25
+	PricingDSLParserSTATUS    = 7
+	PricingDSLParserPERCENT   = 8
+	PricingDSLParserFIXED     = 9
+	PricingDSLParserFINAL     = 10
+	PricingDSLParserCOUPON    = 11
+	PricingDSLParserPROMOCODE = 12
+	PricingDSLParserCERT      = 13
+	PricingDSLParserAND       = 14
+	PricingDSLParserOR        = 15
+	PricingDSLParserTRUE      = 16
+	PricingDSLParserEQ        = 17
+	PricingDSLParserNE        = 18
+	PricingDSLParserGE        = 19
+	PricingDSLParserGT        = 20
+	PricingDSLParserLE        = 21
+	PricingDSLParserLT        = 22
+	PricingDSLParserID        = 23
+	PricingDSLParserNUMBER    = 24
+	PricingDSLParserSTRING    = 25
+	PricingDSLParserWS        = 26
 )
 
 // PricingDSLParser rules.
@@ -344,6 +347,7 @@ type IRuleContext interface {
 	NUMBER() antlr.TerminalNode
 	GROUP() antlr.TerminalNode
 	GroupType() IGroupTypeContext
+	STATUS() antlr.TerminalNode
 
 	// IsRuleContext differentiates from other interfaces.
 	IsRuleContext()
@@ -455,6 +459,10 @@ func (s *RuleContext) GroupType() IGroupTypeContext {
 	}
 
 	return t.(IGroupTypeContext)
+}
+
+func (s *RuleContext) STATUS() antlr.TerminalNode {
+	return s.GetToken(PricingDSLParserSTATUS, 0)
 }
 
 func (s *RuleContext) GetRuleContext() antlr.RuleContext {
@@ -581,6 +589,24 @@ func (p *PricingDSLParser) Rule_() (localctx IRuleContext) {
 		}
 
 	}
+	p.SetState(42)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == PricingDSLParserSTATUS {
+		{
+			p.SetState(41)
+			p.Match(PricingDSLParserSTATUS)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	}
 
 errorExit:
 	if p.HasError() {
@@ -697,11 +723,11 @@ func (p *PricingDSLParser) Modifier() (localctx IModifierContext) {
 	p.EnterRule(localctx, 4, PricingDSLParserRULE_modifier)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(41)
+		p.SetState(44)
 		p.ModifierType()
 	}
 	{
-		p.SetState(42)
+		p.SetState(45)
 		p.Match(PricingDSLParserNUMBER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -819,10 +845,10 @@ func (p *PricingDSLParser) ModifierType() (localctx IModifierTypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(44)
+		p.SetState(47)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&896) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&1792) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -940,10 +966,10 @@ func (p *PricingDSLParser) GroupType() (localctx IGroupTypeContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(46)
+		p.SetState(49)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7168) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&14336) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -1112,7 +1138,7 @@ func (p *PricingDSLParser) Expression() (localctx IExpressionContext) {
 	p.EnterRule(localctx, 10, PricingDSLParserRULE_expression)
 	var _la int
 
-	p.SetState(57)
+	p.SetState(60)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1122,10 +1148,10 @@ func (p *PricingDSLParser) Expression() (localctx IExpressionContext) {
 	case PricingDSLParserID:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(48)
+			p.SetState(51)
 			p.Comparison()
 		}
-		p.SetState(53)
+		p.SetState(56)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1134,7 +1160,7 @@ func (p *PricingDSLParser) Expression() (localctx IExpressionContext) {
 
 		for _la == PricingDSLParserAND || _la == PricingDSLParserOR {
 			{
-				p.SetState(49)
+				p.SetState(52)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(_la == PricingDSLParserAND || _la == PricingDSLParserOR) {
@@ -1145,11 +1171,11 @@ func (p *PricingDSLParser) Expression() (localctx IExpressionContext) {
 				}
 			}
 			{
-				p.SetState(50)
+				p.SetState(53)
 				p.Comparison()
 			}
 
-			p.SetState(55)
+			p.SetState(58)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1160,7 +1186,7 @@ func (p *PricingDSLParser) Expression() (localctx IExpressionContext) {
 	case PricingDSLParserTRUE:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(56)
+			p.SetState(59)
 			p.Match(PricingDSLParserTRUE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1317,15 +1343,15 @@ func (p *PricingDSLParser) Comparison() (localctx IComparisonContext) {
 	p.EnterRule(localctx, 12, PricingDSLParserRULE_comparison)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(59)
+		p.SetState(62)
 		p.Identifier()
 	}
 	{
-		p.SetState(60)
+		p.SetState(63)
 		p.Comparator()
 	}
 	{
-		p.SetState(61)
+		p.SetState(64)
 		p.Value()
 	}
 
@@ -1454,10 +1480,10 @@ func (p *PricingDSLParser) Comparator() (localctx IComparatorContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(63)
+		p.SetState(66)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4128768) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8257536) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -1570,14 +1596,14 @@ func (p *PricingDSLParser) Identifier() (localctx IIdentifierContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(65)
+		p.SetState(68)
 		p.Match(PricingDSLParserID)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(70)
+	p.SetState(73)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1586,7 +1612,7 @@ func (p *PricingDSLParser) Identifier() (localctx IIdentifierContext) {
 
 	for _la == PricingDSLParserT__0 {
 		{
-			p.SetState(66)
+			p.SetState(69)
 			p.Match(PricingDSLParserT__0)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1594,7 +1620,7 @@ func (p *PricingDSLParser) Identifier() (localctx IIdentifierContext) {
 			}
 		}
 		{
-			p.SetState(67)
+			p.SetState(70)
 			p.Match(PricingDSLParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1602,7 +1628,7 @@ func (p *PricingDSLParser) Identifier() (localctx IIdentifierContext) {
 			}
 		}
 
-		p.SetState(72)
+		p.SetState(75)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1715,7 +1741,7 @@ func (p *PricingDSLParser) Value() (localctx IValueContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(73)
+		p.SetState(76)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == PricingDSLParserNUMBER || _la == PricingDSLParserSTRING) {
