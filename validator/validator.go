@@ -141,6 +141,12 @@ var allowedIdentifiers = map[string]bool{
 	"customer.segment": true,
 	"order.total":      true,
 	"order.itemsCount": true,
+	"user.id":          true,
+	"user.type":        true,
+	"product.id":       true,
+	"product.category": true,
+	"product.price":    true,
+	"cart.total":       true,
 }
 
 func (v *Validator) VisitIdentifier(ctx *parser.IdentifierContext) interface{} {
