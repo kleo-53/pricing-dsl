@@ -4,57 +4,30 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/antlr4-go/antlr/v4"
-
-	"pricing-dsl/lexer"
-	"pricing-dsl/parser"
 	"pricing-dsl/validator"
 )
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Укажите файл с правилами для анализа")
+		fmt.Println("provide a DSL rules file to analyze")
 		os.Exit(1)
 	}
 
-	input, err := antlr.NewFileStream(os.Args[1])
+	source, err := os.ReadFile(os.Args[1])
 	if err != nil {
-		fmt.Println("Ошибка чтения файла:", err)
+		fmt.Println("failed to read rules file:", err)
+		os.Exit(1)
+	}
+
+	result := validator.ValidateString(string(source))
+	if result.Stage == validator.StageValid {
+		fmt.Println("DSL is valid")
 		return
 	}
 
-	collector := &lexer.ErrorCollector{}
-
-	lex := parser.NewPricingDSLLexer(input)
-	lex.RemoveErrorListeners()
-	lex.AddErrorListener(collector)
-
-	stream := antlr.NewCommonTokenStream(
-		lex,
-		antlr.TokenDefaultChannel,
-	)
-	if len(collector.LexerErrors) > 0 {
-		fmt.Println("Лексические ошибки:")
-		for _, err := range collector.LexerErrors {
-			fmt.Println("-", err)
-		}
-		return
+	fmt.Printf("%s errors:\n", result.Stage)
+	for _, err := range result.Errors {
+		fmt.Println("-", err)
 	}
-
-	p := parser.NewPricingDSLParser(stream)
-	p.RemoveErrorListeners()
-	p.AddErrorListener(collector)
-	tree := p.Start_()
-
-	if len(collector.ParserErrors) > 0 {
-		fmt.Println("Синтаксические ошибки:")
-		for _, err := range collector.ParserErrors {
-			fmt.Println("-", err)
-		}
-		return
-	}
-	v := validator.NewValidator()
-	tree.Accept(v)
-
-	fmt.Println("DSL корректен")
+	os.Exit(1)
 }
