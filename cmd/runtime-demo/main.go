@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"pricing-dsl/pkg/compiler"
-	"pricing-dsl/pkg/runtime"
-	runtimecontext "pricing-dsl/pkg/runtime/context"
+	"github.com/kleo-53/pricing-dsl/pkg/compiler"
+	"github.com/kleo-53/pricing-dsl/pkg/runtime"
+	runtimecontext "github.com/kleo-53/pricing-dsl/pkg/runtime/context"
 )
 
 func main() {

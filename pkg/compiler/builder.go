@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"pricing-dsl/parser"
-	"pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/parser"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
 )
 
 func BuildProgram(tree parser.IStartContext) (*ast.Program, error) {

@@ -3,10 +3,10 @@ package engine
 import (
 	"sort"
 
-	"pricing-dsl/pkg/ast"
-	"pricing-dsl/pkg/model"
-	runtimecontext "pricing-dsl/pkg/runtime/context"
-	"pricing-dsl/pkg/runtime/evaluator"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/pkg/model"
+	runtimecontext "github.com/kleo-53/pricing-dsl/pkg/runtime/context"
+	"github.com/kleo-53/pricing-dsl/pkg/runtime/evaluator"
 )
 
 type Context = runtimecontext.Context

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"pricing-dsl/validator"
+	"github.com/kleo-53/pricing-dsl/validator"
 )
 
 func main() {

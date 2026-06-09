@@ -3,7 +3,7 @@ package release
 import (
 	"fmt"
 
-	"pricing-dsl/pkg/repository"
+	"github.com/kleo-53/pricing-dsl/pkg/repository"
 )
 
 type Manager interface {

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"pricing-dsl/lexer"
-	"pricing-dsl/parser"
+	"github.com/kleo-53/pricing-dsl/lexer"
+	"github.com/kleo-53/pricing-dsl/parser"
 
 	"github.com/antlr4-go/antlr/v4"
 )

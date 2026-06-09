@@ -3,7 +3,7 @@ package release
 import (
 	"testing"
 
-	"pricing-dsl/pkg/repository"
+	"github.com/kleo-53/pricing-dsl/pkg/repository"
 )
 
 func TestManagerPublishesAndRollsBack(t *testing.T) {

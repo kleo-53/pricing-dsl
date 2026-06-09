@@ -3,7 +3,7 @@ package runtime
 import (
 	"testing"
 
-	"pricing-dsl/pkg/runtime/engine"
+	"github.com/kleo-53/pricing-dsl/pkg/runtime/engine"
 )
 
 func TestNewReturnsEngine(t *testing.T) {

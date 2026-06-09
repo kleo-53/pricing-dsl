@@ -3,7 +3,7 @@ package compiler
 import (
 	"testing"
 
-	"pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
 )
 
 func TestBuildProgramCreatesDomainAST(t *testing.T) {

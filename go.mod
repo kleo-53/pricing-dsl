@@ -1,4 +1,4 @@
-module pricing-dsl
+module github.com/kleo-53/pricing-dsl
 
 go 1.25.0
 

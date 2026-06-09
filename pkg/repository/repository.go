@@ -5,7 +5,7 @@ import (
 	"sort"
 	"time"
 
-	"pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
 )
 
 type RuleVersion struct {

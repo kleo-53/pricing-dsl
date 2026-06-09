@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
 )
 
 func TestInMemoryRepositoryStoresVersionsAndActiveVersion(t *testing.T) {

@@ -3,8 +3,8 @@ package evaluator
 import (
 	"testing"
 
-	"pricing-dsl/pkg/ast"
-	runtimecontext "pricing-dsl/pkg/runtime/context"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
+	runtimecontext "github.com/kleo-53/pricing-dsl/pkg/runtime/context"
 )
 
 func TestEvaluateComparisonsAndLogicalExpressions(t *testing.T) {

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"pricing-dsl/lexer"
-	"pricing-dsl/parser"
-	"pricing-dsl/pkg/ast"
-	"pricing-dsl/validator"
+	"github.com/kleo-53/pricing-dsl/lexer"
+	"github.com/kleo-53/pricing-dsl/parser"
+	"github.com/kleo-53/pricing-dsl/pkg/ast"
+	"github.com/kleo-53/pricing-dsl/validator"
 
 	"github.com/antlr4-go/antlr/v4"
 )
